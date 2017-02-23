@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -99,8 +100,18 @@ app.put('/posts/:id', (req, res) => {
     .then(updatedPost => res.status(201).json(updatedPost.apiRepr()))
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
+=======
+const express = require('express');
+const morgan = require('morgan');
 
+const blogPostsRouter = require('./blogPostsRouter');
+const app = express();
 
+>>>>>>> 1691bdadea860a6e11a1827f351e29218b83c84f
+
+app.use(morgan('common'));
+
+<<<<<<< HEAD
 app.delete('/:id', (req, res) => {
   BlogPosts
     .findByIdAndRemove(req.params.id)
@@ -115,6 +126,11 @@ app.delete('/:id', (req, res) => {
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
 });
+=======
+// you need to import `blogPostsRouter` router and route
+// requests to HTTP requests to `/blog-posts` to `blogPostsRouter`
+app.use('/blog-posts', blogPostsRouter);
+>>>>>>> 1691bdadea860a6e11a1827f351e29218b83c84f
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
